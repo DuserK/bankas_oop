@@ -1,0 +1,17 @@
+{
+    "name": "bank/php_oop",
+    "description": "Bank application based on OOP",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Bank\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Darius Kaminskas",
+            "email": "dariuskaminskas@outlook.com"
+        }
+    ],
+    "require": {}
+}
