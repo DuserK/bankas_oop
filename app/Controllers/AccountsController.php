@@ -1,6 +1,6 @@
 <?php
 
-namespace Bank\Controllers\AccountsController;
+namespace Bank\Controllers;
 
 class AccountsController {
     
