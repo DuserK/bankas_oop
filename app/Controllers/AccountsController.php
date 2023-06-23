@@ -2,11 +2,14 @@
 
 namespace Bank\Controllers;
 
+use Bank\App;
+use Bank\FileWriter;
+
 class AccountsController {
     
   public function index()
   {
-    echo '<h1>Accounts</h1>';
+    $data = new FileWriter;
   }
   public function show(int $id)
   {

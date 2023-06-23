@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="app.css">
     <script src="https://kit.fontawesome.com/6b553b78cb.js" crossorigin="anonymous"></script>
-    <!-- <script src="app.js"></script>   -->
+    <script src="app.js"></script>  
     <title><?= $pageTitle ?? 'Untitled'?></title>
 </head>
 <body>

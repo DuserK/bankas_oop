@@ -30,7 +30,9 @@ class App {
         }
 
         else {
-            echo '<h1>Error 404</h1>';
+            return self::view('404',[
+                'pageTitle' => 'Page not found'
+              ]);
         }
     }
 
@@ -39,8 +41,14 @@ class App {
         if ($data) {
             extract($data);
         }
+
+        ob_start();
+
         require __DIR__ . '/../views/top.php';
         require __DIR__ . '/../views/' . $path . '.php';
         require __DIR__ . '/../views/bottom.php';
+
+        
+        return ob_get_clean();
     }
 }

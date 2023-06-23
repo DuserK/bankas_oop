@@ -8,7 +8,9 @@ class HomeController {
     
   public function index()
   {
-    App::view('home/index',['pageTitle' => 'Home']);
+    return App::view('home/index',[
+      'pageTitle' => 'Home'
+    ]);
   }
   
 }

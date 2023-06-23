@@ -1,5 +1,3 @@
-<!-- <h1>Home controllers</h1> -->
-
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="./">OOP Bankas</a>
