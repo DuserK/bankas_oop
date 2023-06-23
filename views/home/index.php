@@ -10,6 +10,9 @@
           <a class="nav-link" aria-current="page" href="./">Pagrindinis</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="./accounts">Sąskaitos</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="./add.php">Pridėti sąskaitą</a>
         </li>
       </ul>

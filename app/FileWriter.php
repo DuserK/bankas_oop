@@ -8,20 +8,20 @@ class FileWriter implements DataBase
 {
     private $data, $fileName;
 
-    public function __construct($filename)
+    public function __construct($fileName)
     {
         $this->fileName = $fileName;
-       if (!file_exists(__DIR__.'/../data/'.$filename.'json')) {
+       if (!file_exists(__DIR__.'/../data/'.$fileName.'.json')) {
            $this->data = [];
        } else {
-           $this->data = json_decode(file_get_contents(__DIR__.'/../data/'.$filename.'json'), 1);
+           $this->data = json_decode(file_get_contents(__DIR__.'/../data/'.$fileName.'.json'), 1);
        }
     }
 
     public function __destruct()
     {
         $this->data = array_values($this->data);
-        file_put_contents(__DIR__.'/../data/'.$this->fileName.'json', json_encode($this->data));
+        file_put_contents(__DIR__.'/../data/'.$this->fileName.'.json', json_encode($this->data));
     }
 
     public function create(array $accountData) : void 
