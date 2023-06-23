@@ -2,11 +2,13 @@
 
 namespace Bank\Controllers;
 
+use Bank\App;
+
 class HomeController {
     
   public function index()
   {
-    echo '<h1>Home controllers</h1>';
+    App::view('home/index',['pageTitle' => 'Home']);
   }
   
 }

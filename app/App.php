@@ -33,4 +33,14 @@ class App {
             echo '<h1>Error 404</h1>';
         }
     }
+
+    static public function view($path, $data = null)
+    {
+        if ($data) {
+            extract($data);
+        }
+        require __DIR__ . '/../views/top.php';
+        require __DIR__ . '/../views/' . $path . '.php';
+        require __DIR__ . '/../views/bottom.php';
+    }
 }
