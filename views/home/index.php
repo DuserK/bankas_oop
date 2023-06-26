@@ -10,10 +10,10 @@
           <a class="nav-link" aria-current="page" href="./">Pagrindinis</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="./accounts">Sąskaitos</a>
+          <a class="nav-link" aria-current="page" href="/accounts">Sąskaitos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./add.php">Pridėti sąskaitą</a>
+          <a class="nav-link" href="/accounts/create">Pridėti sąskaitą</a>
         </li>
       </ul>
     </div>

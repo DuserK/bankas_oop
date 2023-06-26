@@ -21,14 +21,16 @@ class App {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 1 && $url[0] == '') { // jei metodas get ir url tuscias
             return (new HomeController)->index();
         }
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==1 && $url[0] == 'accounts') { 
+        else if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==1 && $url[0] == 'accounts') { 
             return (new AccountsController)->index();
         }
-        else if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 2 && $url[0] == 'accounts') 
-        {
-            return (new AccountsController)->show($url[1]);
+        else if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==2 && $url[0] == 'accounts' && $url[1] == 'create') { 
+            return (new AccountsController)->create();
         }
-
+        else if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) ==2 && $url[0] == 'accounts' && $url[1] == 'store') { 
+            return (new AccountsController)->store($_POST);
+        }
+        
         else {
             return self::view('404',[
                 'pageTitle' => 'Page not found'

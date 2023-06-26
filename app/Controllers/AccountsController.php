@@ -11,13 +11,23 @@ class AccountsController {
   {
     $data = new FileWriter('accounts');
 
-    return App::view('accountsList/index', [
+    return App::view('accounts/index', [
       'pageTitle' => 'Accounts list',
       'accounts' => $data->showAll()
     ]);
   }
-  public function show(int $id)
+  public function create()
   {
+    return App::view('accounts/create', [
+      'pageTitle' => 'Create account'
+    ]);
 
+  }
+  public function store(array $request)
+  {
+    $data = new FileWriter('accounts');
+    $data->create($request);
+    
+    header('Location: /accounts');
   }
 }
