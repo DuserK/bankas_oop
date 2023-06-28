@@ -11993,7 +11993,7 @@ textarea.form-control-lg {
 }
 .content .navbar {
   border-radius: 10px;
-  background-color: #1EB7A6;
+  background: linear-gradient(0deg, #09c778, #01a0f9);
   margin-bottom: 20px;
   color: #fff;
 }

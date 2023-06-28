@@ -30,6 +30,19 @@ class App {
         else if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) ==2 && $url[0] == 'accounts' && $url[1] == 'store') { 
             return (new AccountsController)->store($_POST);
         }
+        else if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==3 && $url[0] == 'accounts' && $url[1] == 'edit') { 
+            return (new AccountsController)->edit($url[2]);
+        }
+        else if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) ==3 && $url[0] == 'accounts' && $url[1] == 'update') { 
+            return (new AccountsController)->update($url[2],$_POST);
+        }
+        else if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==3 && $url[0] == 'accounts' && $url[1] == 'delete') { 
+            return (new AccountsController)->delete($url[2]);
+        }
+        else if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) ==3 && $url[0] == 'accounts' && $url[1] == 'destroy') { 
+            return (new AccountsController)->destroy($url[2]);
+        }
+
         
         else {
             return self::view('404',[

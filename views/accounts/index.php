@@ -4,7 +4,7 @@ require __DIR__.'/../home/index.php';
 require __DIR__.'/listHeader.php';
 ?>
 <?php if (empty($accounts)) : ?>
-<p>No accounts yet</p>
+<p style="margin: 8px">No accounts yet</p>
 <?php endif ?>
 <?php foreach ($accounts as $account) : ?>
     <div class="row info-account">
@@ -13,6 +13,10 @@ require __DIR__.'/listHeader.php';
         <div class="col-2"><?= $account['personID'] ?></div>
         <div class="col-3"><?= $account['accountNumber'] ?></div>
         <div class="col-1" style = "text-align: right"><?= $account['balance'] ?> €</div>
-        <div class="col-2 edit"><?php require __DIR__ .'/editbuttons.php'?></div>
+        <div class="col-2 edit">
+        <a href="./accounts/edit/<?= $account['id'] ?>"  class='plus'><i class="fa-regular fa-pen-to-square"></i></a>
+        <a href="./accounts/delete/<?= $account['id'] ?>"  class='delete'><i class="fa-solid fa-trash"></i></a>
+
+        </div>
     </div>
 <?php endforeach ?>
