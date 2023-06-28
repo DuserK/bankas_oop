@@ -2,6 +2,10 @@
 
 use Bank\App;
 
+session_start();
+
+define('URL', 'http://oopbank.test');
+
 require __DIR__.'/../vendor/autoload.php';
 
 echo App::start();

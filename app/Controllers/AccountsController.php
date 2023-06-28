@@ -4,6 +4,7 @@ namespace Bank\Controllers;
 
 use Bank\App;
 use Bank\FileWriter;
+use Bank\Messages;
 
 class AccountsController {
     
@@ -51,7 +52,9 @@ class AccountsController {
         $account['balance'] += $amount;
 
         $data->update($id, $account);
+        Messages::addMessage('success', 'Į sąskaitą pridėta lėšų.');
         header('Location: /accounts/edit/'.$id);
+        print_r($_SESSION);
       }
       if(isset($request['withdraw'])&& $amount >= 0) {
 
@@ -75,5 +78,21 @@ class AccountsController {
       'pageTitle' => 'Ištrinti sąskaitą',
       'account' => $account
      ]);
+  }
+
+  public function destroy(int $id)
+  {
+    $data = new FileWriter('accounts');
+    $account = $data->show($id);
+    if($account['balance'] == 0) {
+      $data->delete($id);
+      Messages::addMessage('success', 'Sąskaita sėkmingai ištrinta.');
+      header('Location: /accounts');
+    }
+    else {
+      Messages::addMessage('danger', 'Sąskaitoje yra lėšų. Ištrinti negalima.');
+      header('Location: /accounts/delete/'.$id);
+    }
+
   }
 }

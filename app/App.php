@@ -4,6 +4,7 @@ namespace Bank;
 
 use Bank\Controllers\AccountsController;
 use Bank\Controllers\HomeController;
+use Bank\Controllers\LoginController;
 
 class App {
 
@@ -21,27 +22,49 @@ class App {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 1 && $url[0] == '') { // jei metodas get ir url tuscias
             return (new HomeController)->index();
         }
-        else if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==1 && $url[0] == 'accounts') { 
+
+        /// LOGIN
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 1 && $url[0] == 'login') { 
+            return (new LoginController)->index();
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) == 1 && $url[0] == 'login') {
+            return (new LoginController)->login($_POST);
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) == 1 && $url[0] == 'logout') {
+            return (new LoginController)->logout($_POST);
+        }
+     
+
+        // Auth middleware
+        if(!isset($_SESSION['email'])) {
+            header('Location: /login');
+            die;
+
+        }
+
+        /// ACCOUNTS
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==1 && $url[0] == 'accounts') { 
             return (new AccountsController)->index();
         }
-        else if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==2 && $url[0] == 'accounts' && $url[1] == 'create') { 
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==2 && $url[0] == 'accounts' && $url[1] == 'create') { 
             return (new AccountsController)->create();
         }
-        else if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) ==2 && $url[0] == 'accounts' && $url[1] == 'store') { 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) ==2 && $url[0] == 'accounts' && $url[1] == 'store') { 
             return (new AccountsController)->store($_POST);
         }
-        else if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==3 && $url[0] == 'accounts' && $url[1] == 'edit') { 
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==3 && $url[0] == 'accounts' && $url[1] == 'edit') { 
             return (new AccountsController)->edit($url[2]);
         }
-        else if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) ==3 && $url[0] == 'accounts' && $url[1] == 'update') { 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) ==3 && $url[0] == 'accounts' && $url[1] == 'update') { 
             return (new AccountsController)->update($url[2],$_POST);
         }
-        else if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==3 && $url[0] == 'accounts' && $url[1] == 'delete') { 
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) ==3 && $url[0] == 'accounts' && $url[1] == 'delete') { 
             return (new AccountsController)->delete($url[2]);
         }
-        else if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) ==3 && $url[0] == 'accounts' && $url[1] == 'destroy') { 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) ==3 && $url[0] == 'accounts' && $url[1] == 'destroy') { 
             return (new AccountsController)->destroy($url[2]);
         }
+        /// ACCOUNTS END
 
         
         else {

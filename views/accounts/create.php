@@ -1,8 +1,5 @@
 
 <?php
-require __DIR__.'/../home/index.php';
-?>
-<?php
 // functions
     function accountNumberGen () {
         $iban = '';
@@ -16,43 +13,6 @@ require __DIR__.'/../home/index.php';
     }
 
     $accountNumber = accountNumberGen();
-
-// if($_SERVER['REQUEST_METHOD'] == 'POST') {
-//     /// validacijos
-//     if (strlen($_POST['name'])<3) {
-//         header('Location: ./add.php?error=5');
-//         die;
-//     } 
-//     if (strlen($_POST['surname'])<3) {
-//         header('Location: ./add.php?error=6');
-//         die;
-//     } 
-//     $accounts = file_get_contents(__DIR__.'/../accounts.json');
-//     $accounts = $accounts ? json_decode($accounts,1) : [];
-    
-//     foreach ($accounts as $a) {
-//         if($a['personID'] === $_POST['personID']) {
-//             header('Location: ./add.php?error=7');
-//             die;
-//         } 
-//     }
-//          $accounts[] = [
-//             'name' => $_POST['name'],
-//             'surname' => $_POST['surname'],
-//             'personID' => $_POST['personID'],
-//             'accountNumber' => $_POST['accountNumber'],
-//             'balance' => 0,
-//             'id' => rand(100000000, 999999999)];
-        
-//             $accounts = json_encode($accounts);
-//             file_put_contents(__DIR__ . '/../accounts.json', $accounts);
-//             header('Location: ./add.php?error=8');
-//             die;
-                
-    
-// }
-
-// $error =$_GET['error'] ?? 0;
 ?>
 
 <div class="row  justify-content-md-center">

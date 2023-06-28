@@ -1,6 +1,5 @@
 
 <?php
-require __DIR__.'/../home/index.php';
 require __DIR__.'/listHeader.php';
 ?>
 <?php if (empty($accounts)) : ?>

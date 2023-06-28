@@ -10,4 +10,10 @@
     <title><?= $pageTitle ?? 'Untitled'?></title>
 </head>
 <body>
-<div class="container content">
+    <div class="container content">
+        <?php if(!isset($inLogin)): ?>
+        <?php require 'nav.php' ?>
+        <?php endif ?>
+        <?php require 'Messages.php' ?>
+ 
+        
