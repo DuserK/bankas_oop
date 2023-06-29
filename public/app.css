@@ -12065,4 +12065,13 @@ textarea.form-control-lg {
   color: #8a6d3b;
   background-color: #fcf8e3;
   border-color: #faebcc;
+
+
+}
+
+.alert-success,.alert-danger, .alert-warning {
+  margin: 10px 1px;
+  padding: 4px 8px;
+  border-radius: 5px;
+
 }

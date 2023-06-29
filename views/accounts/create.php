@@ -25,7 +25,7 @@
                 <form action="/accounts/store" method="post">
                     <div class="mb-3">
                         <label class="form-label" required>Vardas</label>
-                        <input class="form-control" name="name" type="text">
+                        <input class="form-control" name="name" type="text" value="<?= $old['name'] ?? '' ?>">
                     </div>
                     <div class="mb-3">
                         <label class="form-label"required>Pavardė</label>

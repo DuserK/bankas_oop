@@ -28,7 +28,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="amount">Redaguoti balansą:</label>
-                        <input class="form-control" type="number" name="amount" id="amount" placeholder="Įveskite sumą" required>
+                        <input class="form-control" type="number" min = "0" name="amount" id="amount" placeholder="Įveskite sumą" required>
                     </div>
                     <button type="submit" class="btn btn-success mt-4"  name="add" value=1>Pridėti</button>
                     <button type="submit" class="btn btn-danger mt-4" name="withdraw" value=1>Išimti</button>

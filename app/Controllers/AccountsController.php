@@ -5,6 +5,7 @@ namespace Bank\Controllers;
 use Bank\App;
 use Bank\FileWriter;
 use Bank\Messages;
+use Bank\OldData;
 
 class AccountsController {
     
@@ -26,9 +27,39 @@ class AccountsController {
   }
   public function store(array $request)
   {
+    $old = OldData::getFlashData();
+    extract($request);
+
+    $error1 = 0;
+    $error2 = 0;
+    $error3 = 0;
+
+    if (strlen($name) < 3 || strlen($surname) < 3) {
+      Messages::addMessage('warning', 'Vardą ir pavardę turi sudaryti bent trys simboliai');
+      $error1 = 1;
+  }
+
+  if (!ctype_digit($personID) || strlen(trim($personID)) !== 11) {
+      Messages::addMessage('warning', 'Asmens kodą turi sudaryti vienuolika skaičių');
+      $error2 = 1;
+  }
+
+  foreach ($accounts as $account) {
+      if ($account['personID'] === $personID) {
+        Messages::addMessage('warning', 'Vartotojas tokiu asmens kodu jau įvestas');
+        $error3 = 1;
+      }
+      
+    }
+    
+      if ($error1 || $error2 || $error3) {
+        OldData::flashData($request);
+        header("Location: /accounts/create");
+        die;
+      }
     $data = new FileWriter('accounts');
     $data->create($request);
-    
+    Messages::addMessage('success', 'Nauja sąskaita sėkmingai sukurta');
     header('Location: /accounts');
   }
   public function edit(int $id)
@@ -52,7 +83,7 @@ class AccountsController {
         $account['balance'] += $amount;
 
         $data->update($id, $account);
-        Messages::addMessage('success', 'Į sąskaitą pridėta lėšų.');
+        Messages::addMessage('success', 'Suma sėkmingai pridėta prie sąskaitos');
         header('Location: /accounts/edit/'.$id);
         print_r($_SESSION);
       }
@@ -62,10 +93,11 @@ class AccountsController {
 
           $account['balance'] -= $amount;
           $data->update($id, $account);
+          Messages::addMessage('success', 'Suma sėkmingai nuskaičiuota');
           header('Location: /accounts/edit/'.$id);
         }
         else {
-         echo 'Not enough money';
+          Messages::addMessage('danger', 'Nepakankamas sąskaitos likutis');
          header('Location: /accounts/edit/'.$id);
         }
         
@@ -86,11 +118,11 @@ class AccountsController {
     $account = $data->show($id);
     if($account['balance'] == 0) {
       $data->delete($id);
-      Messages::addMessage('success', 'Sąskaita sėkmingai ištrinta.');
+      Messages::addMessage('success', 'Sąskaita sėkmingai ištrinta');
       header('Location: /accounts');
     }
     else {
-      Messages::addMessage('danger', 'Sąskaitoje yra lėšų. Ištrinti negalima.');
+      Messages::addMessage('danger', 'Sąskaitoje yra lėšų. Ištrinti negalima');
       header('Location: /accounts/delete/'.$id);
     }
 

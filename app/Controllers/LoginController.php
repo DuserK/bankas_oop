@@ -4,13 +4,20 @@ namespace Bank\Controllers;
 
 use Bank\App;
 use Bank\FileWriter;
+use Bank\Messages;
+use Bank\OldData;
+
 
 class LoginController {
     
   public function index()
   {
+    $old = OldData::getFlashData();
+
     return App::view('auth/index', [
-      'inLogin' => true
+      'inLogin' => true,
+      'pageTitle' => 'Login',
+      'old' => $old
     ]);
   }
   public function login(array $data)
@@ -24,12 +31,13 @@ class LoginController {
       if($user['email'] == $email && $user['password'] == md5($password)) {
         $_SESSION['email'] = $email;
         $_SESSION['name'] = $user['name'];
-        
+        Messages::addMessage('success', 'Sėkmingai prisijungėte');
         header('Location: /');
         die;
       }
     }
-
+    Messages::addMessage('danger', 'Neteisingas el. paštas arba slaptažodis');
+    OldData::flashData($data);
     header('Location: /login');
     die;
   }
@@ -37,6 +45,7 @@ class LoginController {
   {
     unset($_SESSION['email']);
     unset($_SESSION['name']);
+    Messages::addMessage('success', 'Sėkmingai atsijungėte');
     header('Location: /');
     exit;
   }
