@@ -5,7 +5,7 @@
                 Ištrinti sąskaitą?
             </div>
             <div class="card-body">
-                <form action="/accounts/destroy/<?=$account['record_id']?>" method="post">
+                <form action="/accounts/destroy/<?=$account['id']?>" method="post">
                     <div class="mb-3">
                         <label class="form-label" required>Vardas: <?= $account['name']?></label>
                     </div>

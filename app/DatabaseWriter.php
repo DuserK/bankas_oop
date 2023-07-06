@@ -65,7 +65,7 @@ class Databasewriter implements DataBase
         SET
             `balance` = ?
         WHERE
-            `record_id` = ?
+            `id` = ?
 
         ";
         $stmt = $this->pdo->prepare($sql);
@@ -80,7 +80,7 @@ class Databasewriter implements DataBase
         $sql = "
         DELETE FROM {$this->tableName}
         WHERE
-            `record_id` = ?
+            `id` = ?
         ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$userId]);
@@ -92,7 +92,7 @@ class Databasewriter implements DataBase
         SELECT *
         FROM {$this->tableName}
         WHERE
-            `record_id` = ?
+            `id` = ?
         ";
 
         $stmt = $this->pdo->prepare($sql); // prepared statement, nes yra kintamasis `$userId`

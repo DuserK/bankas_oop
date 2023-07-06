@@ -5,7 +5,7 @@
                 Radaguoti sąskaitą
             </div>
             <div class="card-body">
-                <form action="/accounts/update/<?=$account['record_id']?>" method="post">
+                <form action="/accounts/update/<?=$account['id']?>" method="post">
                     <div class="mb-3">
                         <label class="form-label" required>Vardas:</label>
                         <input class="form-control" name="name" type="text" value="<?=$account['name']?>" readonly>
