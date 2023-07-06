@@ -5,8 +5,12 @@ namespace Bank;
 use Bank\Controllers\AccountsController;
 use Bank\Controllers\HomeController;
 use Bank\Controllers\LoginController;
+use Bank\FileWriter;
+use Bank\DatabaseWriter;
 
 class App {
+
+    const DB = 'database';
 
     static public function start()
     {
@@ -15,6 +19,16 @@ class App {
         array_shift($url);
         
         return self::router($url);
+    }
+    
+    static public function get($table)
+    {
+        if (self::DB == 'file') {
+            return new FileWriter($table);
+        }
+        if (self::DB == 'database') {
+            return new DatabaseWriter($table);
+        }
     }
 
     static private function router($url)

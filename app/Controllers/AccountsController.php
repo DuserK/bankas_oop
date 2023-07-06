@@ -3,7 +3,6 @@
 namespace Bank\Controllers;
 
 use Bank\App;
-use Bank\FileWriter;
 use Bank\Messages;
 use Bank\OldData;
 
@@ -11,7 +10,7 @@ class AccountsController {
     
   public function index()
   {
-    $data = new FileWriter('accounts');
+    $data = App::get('accounts');
 
     return App::view('accounts/index', [
       'pageTitle' => 'Accounts list',

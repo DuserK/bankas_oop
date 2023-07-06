@@ -4,7 +4,7 @@ use Bank\App;
 
 session_start();
 
-define('URL', 'http://oopbank.test');
+define('URL', 'http://bank.test');
 
 require __DIR__.'/../vendor/autoload.php';
 
