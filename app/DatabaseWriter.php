@@ -31,35 +31,28 @@ class Databasewriter implements DataBase
 
     }
 
-    // public function __destruct()
-    // {
- 
-    // }
-
     public function create(array $accountData) : void 
     {
       $sql = "
       INSERT INTO {$this->tableName}
        (
-        `id`,
         `name`,
         `surname`,
-        `personid`,
-        `accountnumber`,
+        `personID`,
+        `accountNumber`,
         `balance`
         )
         VALUES
         (
-        ?,?,?,?,?,?
+        ?,?,?,?,?
         )
       ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
-            $accountData['id'],
             $accountData['name'],
             $accountData['surname'],
-            $accountData['personid'],
-            $accountData['accountnumber'],
+            $accountData['personID'],
+            $accountData['accountNumber'],
             $accountData['balance']
         ]);
 
@@ -72,7 +65,7 @@ class Databasewriter implements DataBase
         SET
             `balance` = ?
         WHERE
-            `id` = ?
+            `record_id` = ?
 
         ";
         $stmt = $this->pdo->prepare($sql);
@@ -87,9 +80,9 @@ class Databasewriter implements DataBase
         $sql = "
         DELETE FROM {$this->tableName}
         WHERE
-            `id` = ?
+            `record_id` = ?
         ";
-        $stmt = $this-pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$userId]);
     }
 
@@ -99,7 +92,7 @@ class Databasewriter implements DataBase
         SELECT *
         FROM {$this->tableName}
         WHERE
-            `id` = ?
+            `record_id` = ?
         ";
 
         $stmt = $this->pdo->prepare($sql); // prepared statement, nes yra kintamasis `$userId`

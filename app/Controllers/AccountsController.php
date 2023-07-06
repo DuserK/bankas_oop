@@ -56,14 +56,14 @@ class AccountsController {
         header("Location: /accounts/create");
         die;
       }
-    $data = new FileWriter('accounts');
+    $data = App::get('accounts');
     $data->create($request);
     Messages::addMessage('success', 'Nauja sąskaita sėkmingai sukurta');
     header('Location: /accounts');
   }
   public function edit(int $id)
   {
-    $data = new FileWriter('accounts');
+    $data = App::get('accounts');
     $account = $data->show($id);
 
     return App::view('accounts/edit', [
@@ -73,7 +73,7 @@ class AccountsController {
   }
   public function update(int $id, array $request)
   {
-    $data = new FileWriter('accounts');
+    $data = App::get('accounts');
     $account = $data->show($id);
 
     $amount = $request['amount'];
@@ -104,7 +104,7 @@ class AccountsController {
     }
   public function delete(int $id)
   {
-    $account = (new FileWriter('accounts'))->show($id);
+    $account = (App::get('accounts'))->show($id);
     return App::view('accounts/delete', [
       'pageTitle' => 'Ištrinti sąskaitą',
       'account' => $account
@@ -113,7 +113,7 @@ class AccountsController {
 
   public function destroy(int $id)
   {
-    $data = new FileWriter('accounts');
+    $data = App::get('accounts');
     $account = $data->show($id);
     if($account['balance'] == 0) {
       $data->delete($id);
