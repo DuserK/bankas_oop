@@ -11993,9 +11993,10 @@ textarea.form-control-lg {
 }
 .content .navbar {
   border-radius: 10px;
-  background: linear-gradient(0deg, #09c778, #01a0f9);
+  border: solid 2px gray;
+  background-color: #fff;
   margin-bottom: 20px;
-  color: #fff;
+  color: gray;
 }
 .content .info {
   margin: 0px;
@@ -12037,14 +12038,6 @@ textarea.form-control-lg {
   background-color: transparent;
 }
 
-.navbar-brand {
-  color: #fff;
-}
-
-.nav-item .nav-link {
-  color: #fff;
-}
-
 .buttonLink {
   text-decoration: none;
   color: #fff;
@@ -12075,3 +12068,20 @@ textarea.form-control-lg {
   border-radius: 5px;
 
 }
+.logo {
+  height: 40px;
+  margin-right: 5px;
+}
+.loginbutton {
+  border-radius: 10px;
+  color: gray;
+  background: none; 
+  border: none;
+}
+.onHover:hover {
+  color: #fff;
+  background-color: gray;
+  border-radius: 10px;
+  
+}
+
