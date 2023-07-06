@@ -110,4 +110,22 @@ class Databasewriter implements DataBase
         $stmt = $this->pdo->query($sql); //     query statement, nes nera kintamuju
         return $stmt->fetchAll(); //    grazina visus rezultatus
     }
+
+    public function getUser(string $email, string $password): ?array // ?array reiskia, kad gali grazinti arba array arba null
+    {
+        $sql = "
+        SELECT *
+        FROM {$this->tableName}
+        WHERE
+        `email` = ? 
+        AND 
+        `password` = ?
+        ";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$email, md5($password)]);
+        $user = $stmt->fetch();
+        
+        return $user ? $user : null;
+    }
 }

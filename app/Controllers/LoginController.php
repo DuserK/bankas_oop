@@ -24,18 +24,31 @@ class LoginController {
   {
     $email = $data['email'] ?? '';
     $password = $data['password'] ?? '';
-
-    $users = (new FileWriter('users'))->showAll();
-
-    foreach($users as $user) {
-      if($user['email'] == $email && $user['password'] == md5($password)) {
-        $_SESSION['email'] = $email;
-        $_SESSION['name'] = $user['name'];
-        Messages::addMessage('success', 'Sėkmingai prisijungėte');
-        header('Location: /');
-        die;
+    if(App::DB == 'file') {
+      $users = (new FileWriter('users'))->showAll();  
+  
+      foreach($users as $user) {
+        if($user['email'] == $email && $user['password'] == md5($password)) {
+          $_SESSION['email'] = $email;
+          $_SESSION['name'] = $user['name'];
+          Messages::addMessage('success', 'Sėkmingai prisijungėte');
+          header('Location: /');
+          die;
+        }
       }
+    
     }
+
+    $users = App::get('users')->getUser($email, $password);
+
+    if($users) {
+      $_SESSION['email'] = $email;
+      $_SESSION['name'] = $users['name'];
+      Messages::addMessage('success', 'Sėkmingai prisijungėte');
+      header('Location: /');
+      die;
+    }
+
     Messages::addMessage('danger', 'Neteisingas el. paštas arba slaptažodis');
     OldData::flashData($data);
     header('Location: /login');
