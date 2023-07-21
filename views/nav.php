@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <img class = "logo" src="./img/bank.png" alt="logo">
+    <img class = "logo" src="/img/bank.png" alt="logo">
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">

@@ -34,12 +34,12 @@ class AccountsController {
     $error3 = 0;
 
     if (strlen($name) < 3 || strlen($surname) < 3) {
-      Messages::addMessage('warning', 'Vardą ir pavardę turi sudaryti bent trys simboliai');
+      Messages::addMessage('warning', 'Vardą ir pavardę turi sudaryti bent 3 simboliai');
       $error1 = 1;
   }
 
   if (!ctype_digit($personID) || strlen(trim($personID)) !== 11) {
-      Messages::addMessage('warning', 'Asmens kodą turi sudaryti vienuolika skaičių');
+      Messages::addMessage('warning', 'Asmens kodą turi sudaryti 11 skaitmenų');
       $error2 = 1;
   }
 

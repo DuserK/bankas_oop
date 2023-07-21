@@ -1,8 +1,13 @@
-<main style="width:40%; margin-left: 30%; text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-<h1 style="font-size: 60px; font-weight: 600; margin:10px; text-transform: capitalize; color: gray">404</h1>
-<h2 style="font-weight: 600; margin:10px; text-transform: capitalize; color: gray">Page not found</h2>
-<p style="font-size: 20px; color: gray;">We're sorry, the page you requested could not be found <br>
-    please go back to the homepage</p>
-<a href="/" style="text-decoration: none; color: white; text-transform: uppercase; font-size: 20px; background-color: #1EB7A6; border-radius: 20px; padding: 10px 20px;">Go home</a>
-
-</main>
+<div style = "pading" class="row  justify-content-md-center table-center">
+    <div class="col-lg-6 col-12">
+        <div class="title">
+            <h1 >404</h1>
+            <h2 >Page not found</h2>
+            <p >We're sorry, the page you requested could not be found <br>
+                please go back to the homepage.  <span>
+                <a style = "text-decoration: underline" class="buttonLink" href="/accounts"> Go back</a>
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
